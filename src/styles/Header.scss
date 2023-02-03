@@ -1,0 +1,31 @@
+.navbar {
+    background: linear-gradient(100deg, white, #fee1c0b3 50%, #fdc3808a);;
+    font-size: large;
+    font-weight: 500;
+    .nav-link {
+        color:#FB8500;
+    }
+}
+
+.registration-btn {
+    font-size: large;
+}
+
+.login-btn {
+    font-size: large;
+}
+
+.login-btn:hover {
+    border: 1px solid #FB8500;
+    color: white;
+    background: #FB8500;
+}
+
+.link-to-nav-items {
+    text-decoration: none;
+    color: #FB8500;
+}
+
+.link-to-nav-items:hover {
+    color: #FCA440;
+}
