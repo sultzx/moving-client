@@ -1,0 +1,23 @@
+.login-card {
+  margin: 140px 0 140px 0;
+  width: 600px;
+  border: 1px solid #fb8500;
+  border-radius: 12px;
+  background: linear-gradient(50deg, white, #fee1c0b3 50%, #fdc3808a);
+  .card-body {
+    .card-title {
+        font-size: 1.8rem;
+        color:#fb8500;
+        margin-bottom: 20px;
+    }
+  }
+}
+
+.btn.btn-primary.switch-to-client-outline-btn {
+    background: transparent;
+    color: #fb8500;
+}
+
+.btn.btn-primary.switch-to-client-outline-btn:hover {
+    text-decoration: underline;
+}
