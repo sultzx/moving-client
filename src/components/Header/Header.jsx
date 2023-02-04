@@ -15,7 +15,7 @@ import logo from "../../images/logo-2.png";
 const Header = () => {
   return (
     <>
-      <Navbar expand="lg" className="shadow-sm" bg="light" variant="primary">
+      <Navbar expand="lg" className="shadow-sm" sticky="top" bg="light" variant="primary">
         <Container fluid>
           <Navbar.Brand href="/">
             <img src={logo} height="60px" alt="" />

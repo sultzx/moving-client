@@ -1,6 +1,10 @@
+
+
 .login-card {
-  margin: 140px 0 140px 0;
-  width: 600px;
+
+  margin: 40px 0 40px 0;
+
+  width: 500px;
   border: 1px solid #fb8500;
   border-radius: 12px;
   background: linear-gradient(50deg, white, #fee1c0b3 50%, #fdc3808a);
@@ -20,4 +24,33 @@
 
 .btn.btn-primary.switch-to-client-outline-btn:hover {
     text-decoration: underline;
+}
+
+.form-control-input {
+  padding: 10px;
+  border: 1px solid #fb8500;
+}
+
+.form-control-input.active {
+  padding: 10px;
+  border: 1px solid #fb8500;
+}
+
+.nav-link {
+  color: #fb8500;
+}
+
+.nav-link:hover {
+  color: #FCA440;
+}
+
+.nav-link.switch-nav-link:focus {
+  color: white;
+  background: #fb8500;
+}
+
+.nav-link.active.switch-nav-link {
+  color: white;
+  background: #fb8500;
+  padding: 8px;
 }

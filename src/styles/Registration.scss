@@ -1,0 +1,15 @@
+
+.registration-card {
+    margin: 40px 0 40px 0;
+    width: 500px;
+    border: 1px solid #fb8500;
+    border-radius: 12px;
+    background: linear-gradient(50deg, white, #fee1c0b3 50%, #fdc3808a);
+    .card-body {
+      .card-title {
+          font-size: 1.8rem;
+          color:#fb8500;
+          margin-bottom: 20px;
+      }
+    }
+}
