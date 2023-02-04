@@ -49,45 +49,99 @@ const Login = () => {
                   </Nav>
                   <hr />
                   <Row className="text-start">
-                    <Form>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Қолданушы аты немесе пошта</Form.Label>
-                        <Form.Control
-                          className="form-control-input"
-                          type="email"
-                          placeholder="Енгізіңіз"
-                        />
-                        <Form.Text className="text-muted">
-                          Біз сіздің мәліметтеріңізді құпия сақтаймыз
-                        </Form.Text>
-                      </Form.Group>
-
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label>Құпия сөз</Form.Label>
-                        <Form.Control
-                          className="form-control-input"
-                          type="password"
-                          placeholder="Енгізіңіз"
-                        />
-                      </Form.Group>
-
-                      <Col className="col-12 d-flex column justify-content-end align-items-center">
-                        <Link to="/registration">
-                          <Button
-                            variant="primary"
-                            className="switch-to-client-outline-btn"
+                    <Tab.Content>
+                      <Tab.Pane eventKey="first">
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicEmail"
                           >
-                            Тіркелу бөліміне өту
-                          </Button>
-                        </Link>
-                        <Button variant="primary" className="" type="submit">
-                          Кіру
-                        </Button>
-                      </Col>
-                    </Form>
+                            <Form.Label>Қолданушы аты немесе пошта</Form.Label>
+                            <Form.Control
+                              className="form-control-input"
+                              type="email"
+                              placeholder=""
+                            />
+
+                          </Form.Group>
+
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicPassword"
+                          >
+                            <Form.Label>Құпия сөз</Form.Label>
+                            <Form.Control
+                              className="form-control-input"
+                              type="password"
+                              placeholder=""
+                            />
+                          </Form.Group>
+
+                          <Col className="col-12 d-flex column justify-content-end align-items-center">
+                            <Link to="/registration">
+                              <Button
+                                variant="primary"
+                                className="switch-to-client-outline-btn"
+                              >
+                                Тіркелу бөліміне өту
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="primary"
+                              className=""
+                              type="submit"
+                            >
+                              Кіру
+                            </Button>
+                          </Col>
+                        </Form>
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="second">
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicEmail"
+                          >
+                            <Form.Label>Қолданушы аты немесе пошта</Form.Label>
+                            <Form.Control
+                              className="form-control-input"
+                              type="email"
+                              placeholder=""
+                            />
+                          </Form.Group>
+
+                          <Form.Group
+                            className="mb-3"
+                            controlId="formBasicPassword"
+                          >
+                            <Form.Label>Құпия сөз</Form.Label>
+                            <Form.Control
+                              className="form-control-input"
+                              type="password"
+                              placeholder=""
+                            />
+                          </Form.Group>
+
+                          <Col className="col-12 d-flex column justify-content-end align-items-center">
+                            <Link to="/registration">
+                              <Button
+                                variant="primary"
+                                className="switch-to-client-outline-btn"
+                              >
+                                Тіркелу бөліміне өту
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="primary"
+                              className=""
+                              type="submit"
+                            >
+                              Кіру
+                            </Button>
+                          </Col>
+                        </Form>
+                      </Tab.Pane>
+                    </Tab.Content>
                   </Row>
                 </Tab.Container>
               </Card.Body>

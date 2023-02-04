@@ -1,0 +1,24 @@
+.profile-card {
+    border: 1px solid #fb8500;
+    border-radius: 12px;
+    background: linear-gradient(50deg, white, #fee1c0b3 50%, #fdc3808a);
+    .card-body {
+      .card-title {
+          font-size: large;
+          color:#fb8500;
+          margin-bottom: 20px;
+      }
+    }
+}
+
+.profile-avatar {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #fb8500;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+}
+
+.profile-avatar:hover {
+    opacity: 0.5;
+}

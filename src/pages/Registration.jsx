@@ -14,7 +14,10 @@ import { Link } from "react-router-dom";
 import "../styles/Registration.scss";
 
 const Registration = () => {
-  return (
+    
+
+
+return (
     <>
       <Container>
         <Row>
@@ -181,8 +184,7 @@ const Registration = () => {
                             <Link to="/login">
                               <Button
                                 variant="primary"
-                                className="switch-to-client-outline-btn"
-                              >
+                                className="switch-to-client-outline-btn">
                                 Кіру бөліміне өту
                               </Button>
                             </Link>
