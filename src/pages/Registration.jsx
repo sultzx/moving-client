@@ -15,14 +15,12 @@ import "../styles/Registration.scss";
 
 const Registration = () => {
     
-
-
 return (
     <>
-      <Container>
+      <Container style={{zIndex: '2'}}>
         <Row>
           <Col className="col-12 d-flex align-items-center justify-content-center">
-            <Card className="registration-card text-center">
+            <Card className="registration-card text-center" sticky="top">
               <Card.Body>
                 <Tab.Container defaultActiveKey={"first"}>
                   <Card.Title>{"Регистрация"}</Card.Title>
@@ -122,7 +120,7 @@ return (
                             className="mb-3"
                             controlId="formBasicEmail"
                           >
-                            <Form.Label>Қолданушы аты</Form.Label>
+                            <Form.Label>Қолданушы аты немесе пошта</Form.Label>
                             <Form.Control
                               className="form-control-input"
                               type="text"
@@ -143,18 +141,6 @@ return (
                           </Form.Group>
 
                         <hr />
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicEmail"
-                          >
-                            <Form.Label>Пошта</Form.Label>
-                            <Form.Control
-                              className="form-control-input"
-                              type="email"
-                              placeholder=""
-                            />
-                          </Form.Group>
-
 
                           <Form.Group
                             className="mb-3"

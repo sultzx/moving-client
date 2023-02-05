@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 import "../styles/Profile.scss";
 
@@ -53,8 +54,7 @@ const Profile = () => {
                             <Form.Control
                               className="form-control-input"
                               type="text"
-                              placeholder=""
-                            />
+                              placeholder=""/>
                           </Form.Group>
                         </Col>
                         <Col lg={4}>
