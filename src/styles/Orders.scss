@@ -1,0 +1,40 @@
+.order-card {
+    margin: 14px 0 14px 0px;
+    border: 1px solid #fb8500;
+    border-radius: 12px;
+    background: linear-gradient(50deg, #fee1c0b3 50%, #fdc3808a);
+    .card-body {
+      .card-title {
+          font-size: large;
+          color:#fb8500;
+          margin-bottom: 20px;
+          transition-duration: 0.2s;
+      }
+    }
+    transition-duration: 0.6s;
+}
+.order-card:hover {
+    cursor: pointer;
+    border: 1px solid #fb8500;
+    background: white;
+    .card-body {
+      .card-title {
+          font-size: large;
+          color:#fb8500;
+          margin-bottom: 20px;
+      }
+    }
+}
+
+.delete-order-btn {
+  color: #fb8500;
+  margin: 0px;
+}
+
+.order-card-date {
+  color: #6C757D
+}
+
+.order-card-discription {
+  color: #212529
+}

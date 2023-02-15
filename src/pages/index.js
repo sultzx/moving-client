@@ -5,7 +5,9 @@ import Profile from './Profile.jsx'
 import Contact from './Contact.jsx'
 import News from './News.jsx'
 import CreateOrder from './CreateOrder.jsx'
+import UpdateOrder from './UpdateOrder.jsx'
+import Orders from './Orders.jsx'
 
 export {
-    Main, Contact, News, Login, Registration, Profile, CreateOrder
+    Main, Contact, News, Login, Registration, Profile, CreateOrder, UpdateOrder, Orders
 }

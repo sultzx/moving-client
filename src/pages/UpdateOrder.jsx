@@ -3,7 +3,8 @@ import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
 
 import "../styles/CreateOrder.scss";
 
-const CreateOrder = () => {
+const UpdateOrder = () => {
+
   const inputFileRef = React.useRef(null);
 
   const image =
@@ -17,7 +18,7 @@ const CreateOrder = () => {
       <Container>
         <br />
         <Row>
-          <h3>Тапсырыс жасау</h3>
+          <h3>Менің тапсырысым</h3>
         </Row>
         {/* <hr /> */}
         <br />
@@ -74,8 +75,6 @@ const CreateOrder = () => {
                             </Form.Select>
                           </Form.Group>
                         </Col>
-                        {/* <Col lg={4}></Col>
-                        <Col lg={4}></Col> */}
                         <Col lg={6}>
                           <Form.Group
                             className="mb-3 d-flex row align-items-center justify-content-center"
@@ -94,14 +93,14 @@ const CreateOrder = () => {
                       </Row>
                       <hr />
                       <Col className="col-12 d-flex column justify-content-end align-items-center">
-                        <Button
+                      <Button
                           variant="primary"
                           className="switch-to-client-outline-btn"
                         >
                           Бас тарту
                         </Button>
                         <Button variant="primary" className="" type="submit">
-                          Сақтау
+                          Жаңарту
                         </Button>
                       </Col>
                     </Form>
@@ -116,4 +115,4 @@ const CreateOrder = () => {
   );
 };
 
-export default CreateOrder;
+export default UpdateOrder;

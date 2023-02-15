@@ -1,5 +1,12 @@
 .order-img {
     border: 1px solid #fb8500;
     border-radius: 6px;
-    height: 260px;
+    height: 330px;
+    padding: 0;
+    transition-duration: 0.5s;
+}
+
+.order-img:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
