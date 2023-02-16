@@ -1,7 +1,7 @@
 .order-img {
     border: 1px solid #fb8500;
     border-radius: 6px;
-    height: 330px;
+    height: 324px;
     padding: 0;
     transition-duration: 0.5s;
 }
@@ -9,4 +9,17 @@
 .order-img:hover {
     opacity: 0.5;
     cursor: pointer;
+}
+
+.order-select-date {
+    border: 1px solid #fb8500;
+    border-radius: 6px;
+    padding: 10px 10px 10px 10px;
+}
+
+.btn.btn-primary.choose-car-body-btn {
+    border: 1px solid #fb8500;
+    border-radius: 6px;
+    background-color: white;
+    color:#fb8500;
 }

@@ -18,12 +18,8 @@ const UpdateOrder = () => {
       <Container>
         <br />
         <Row>
-          <h3>Менің тапсырысым</h3>
-        </Row>
-        {/* <hr /> */}
-        <br />
-        <Row>
-          <Col className="col-12">
+        <h3>Менің тапсырысым</h3>
+          <Col className="col-12" style={{paddingTop: '18px'}}>
             <Card className="profile-card">
               <Card.Body>
                 <span className="card-title">Тапсырыс панелі</span>
