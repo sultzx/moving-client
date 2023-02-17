@@ -1,13 +1,45 @@
 import React from "react";
-import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Card,
+  Form,
+  Modal,
+} from "react-bootstrap";
 
 import "../styles/CreateOrder.scss";
 import { Box2Fill } from "react-bootstrap-icons";
 
+import one from "../images/1.png";
+import two from "../images/2.png";
+import three from '../images/3.png';
+import four from '../images/4.png';
+import five from '../images/5.png';
+import six from '../images/6.png';
+import seven from '../images/7.png';
+import CarBody from "../components/CarBody/CarBody";
+
 const CreateOrder = () => {
+  
   const inputFileRef = React.useRef(null);
 
   const [selectedDate, SetSelectedDate] = React.useState("");
+
+  const [selectedCarBody, setSelectedCarBody] = React.useState("");
+
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleSelectCarBody = (data) => {
+    setSelectedCarBody(data);
+    handleClose();
+  }
+
+  console.log(selectedCarBody);
 
   const altImage =
     "https://archive.org/download/placeholder-image/placeholder-image.jpg";
@@ -138,38 +170,43 @@ const CreateOrder = () => {
                                 controlId="formBasicEmail"
                               >
                                 <Form.Label>Көлік түрі</Form.Label>
-                                <Button className="choose-car-body-btn flex-fill" style={{margin: '0 12px 0 12px'}}>
-                                  Таңдаңыз &nbsp;<Box2Fill/>
+                                <Button
+                                  onClick={handleShow}
+                                  className="choose-car-body-btn flex-fill"
+                                  style={{ margin: "0 12px 0 12px" }}
+                                >
+                                  {selectedCarBody && selectedCarBody? selectedCarBody : 'Таңдаңыз'} &nbsp;
+                                  <Box2Fill />
                                 </Button>
                               </Form.Group>
                             </Col>
                           </Row>
                         </Col>
                         <Col lg={6}>
-                        <Col lg={12}>
-                              <Form.Group
-                                className="mb-3 d-flex row align-items-center justify-content-center"
-                                controlId="formBasicEmail"
-                              >
-                                <Form.Label>Бейнесі</Form.Label>
-                                <Row>
-                                  <img
-                                    className="order-img img-fluid full"
-                                    src={altImage}
-                                    alt=""
-                                    onClick={() => {
-                                      inputFileRef.current.click();
-                                    }}
-                                  />
-                                  <input
-                                    type="file"
-                                    ref={inputFileRef}
-                                    // onChange={handleChangeFile}
-                                    hidden
-                                  />
-                                </Row>
-                              </Form.Group>
-                            </Col>
+                          <Col lg={12}>
+                            <Form.Group
+                              className="mb-3 d-flex row align-items-center justify-content-center"
+                              controlId="formBasicEmail"
+                            >
+                              <Form.Label>Бейнесі</Form.Label>
+                              <Row>
+                                <img
+                                  className="order-img img-fluid full"
+                                  src={altImage}
+                                  alt=""
+                                  onClick={() => {
+                                    inputFileRef.current.click();
+                                  }}
+                                />
+                                <input
+                                  type="file"
+                                  ref={inputFileRef}
+                                  // onChange={handleChangeFile}
+                                  hidden
+                                />
+                              </Row>
+                            </Form.Group>
+                          </Col>
                         </Col>
                       </Row>
 
@@ -193,6 +230,84 @@ const CreateOrder = () => {
           </Col>
         </Row>
       </Container>
+
+      <Modal show={show} onHide={handleClose} fullscreen >
+        <Modal.Header closeButton>
+          <Modal.Title>Көлік түрін таңдау</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Row>
+          <CarBody
+              title={'Кіші кузов'}
+              img={one}
+              text={'шағын құрылғылар, креслолар немесе шкаф сыйады'}
+              weight={'400'}
+              size={'1.7 / 1 / 0.9'}
+              price={'2000'}
+              select={() => handleSelectCarBody('Кіші кузов')}
+            />
+            <CarBody
+              title={'Микроавтобус'}
+              img={two}
+              text={'шағын жиһаздар мен қораптарды тасымалдауға арналған'}
+              weight={'750'}
+              size={'2.1 / 1.7 / 2.1'}
+              price={'2800'}
+              select={() => handleSelectCarBody('Микроавтобус')}
+            />
+            <CarBody
+              title={'Орта кузов'}
+              img={three}
+              text={'ішінде заттары бар қорабтар мен диван сыйады'}
+              weight={'1500'}
+              size={'3.0 / 2.0 / 2.0'}
+              price={'3200'}
+              select={() => handleSelectCarBody('Орта кузов')}
+            />
+            <CarBody
+              title={'Үлкен кузов'}
+              img={seven}
+              text={'үлкен құрылғылар, барлық жиһаздар мен қораптар сәйкес сыйады'}
+              weight={'5000'}
+              size={'5.8 / 2.45 / 2.2'}
+              price={'6500'}
+              select={() => handleSelectCarBody('Үлкен кузов')}
+            />
+            <CarBody
+              title={'Борттық жүк көлігі'}
+              img={four}
+              text={'жиналмалы жақтары бар, үлкен жиһаздар мен құрылыс материалдары сыйады'}
+              weight={'7000'}
+              size={'2.0 / 5.0 / 2.2'}
+              price={'7600'}
+              select={() => handleSelectCarBody('Борттық жүк көлігі')}
+            />
+            <CarBody
+              title={'Фура'}
+              img={six}
+              text={'қалааралық, барлық жиһаздар мен құрылыс материалдары сыйады'}
+              weight={'20000'}
+              size={'13.6 / 2.46 / 2.7'}
+              price={'16400'}
+              select={() => handleSelectCarBody('Фура')}
+            />
+            <CarBody
+              title={'Рефрижератор'}
+              img={five}
+              text={'тағамдар мен дәрі-дәрмектер температурасы сақталады'}
+              weight={'1500'}
+              size={'3.0 / 2.0 / 2.0'}
+              price={'4100'}
+              select={() => handleSelectCarBody('Рефрижератор')}
+            />
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Жабу
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
