@@ -87,6 +87,21 @@ const CreateOrder = () => {
                                 />
                               </Form.Group>
                             </Col>
+
+                            <Col lg={12}>
+                              <Form.Group
+                                className="mb-3"
+                                controlId="formBasicEmail"
+                              >
+                                <Form.Label>Категория</Form.Label>
+                                <Form.Select className="form-control-input">
+                                <option></option>
+                                <option value="1">Қала ішінде тасымалдау</option>
+                                <option value="2">Қалааралық тасымалдау</option>
+                              </Form.Select>
+                              </Form.Group>
+                            </Col>
+
                             <Col lg={12}>
                               <Form.Group
                                 className="mb-3"
@@ -98,7 +113,7 @@ const CreateOrder = () => {
                                     <Form.Select
                                       onMouseDown={() => SetSelectedDate("")}
                                       className="form-control-input"
-                                      aria-label="Default select example"
+                                      
                                     >
                                       <option value="0">
                                         {selectedDate && selectedDate

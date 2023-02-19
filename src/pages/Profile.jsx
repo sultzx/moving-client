@@ -9,12 +9,14 @@ const Profile = () => {
     
   const inputFileRef = React.useRef(null);
 
+  const isEmployee = true
+
   return (
     <>
       <Container>
         <br />
         <Row>
-          <h3>Жеке профиль</h3>
+          <h3>{isEmployee ? 'Қызметкердің жеке профилі' :  'Клиенттің жеке профилі'}</h3>
         </Row>
         <hr />
         <br />
@@ -75,7 +77,7 @@ const Profile = () => {
                             className="mb-3"
                             controlId="formBasicEmail"
                           >
-                            <Form.Label>Мекен-жайыңыз</Form.Label>
+                            <Form.Label>{isEmployee ? 'Компания' : 'Мекен-жайыңыз'}</Form.Label>
                             <Form.Control
                               className="form-control-input"
                               type="email"
@@ -98,6 +100,19 @@ const Profile = () => {
           </Col>
           <Col className="col-12">
             <br />
+{   isEmployee ? <Card className="profile-card">
+              <Card.Body>
+                <Card.Title>Тапсырыс орындау</Card.Title>
+                <Card.Text>
+                 Жүйе ішінде тіркелген қызметкер клиенттердің тапсырысын орындай алады. Ол үшін төмендегі "Тапсырыстар" батырмасын басып, тізімдегі кез-келген тапсырысты орындай алады.
+                </Card.Text>
+                <Col className="col-12 d-flex column justify-content-end align-items-center">
+                  <Button variant="primary" className="" type="submit">
+                    Тапсырыстар
+                  </Button>
+                </Col>
+              </Card.Body>
+            </Card>  :         
             <Card className="profile-card">
               <Card.Body>
                 <Card.Title>Тапсырыс жасау</Card.Title>
@@ -119,7 +134,7 @@ const Profile = () => {
                   </Button>
                 </Col>
               </Card.Body>
-            </Card>
+            </Card>}
           </Col>
         </Row>
       </Container>

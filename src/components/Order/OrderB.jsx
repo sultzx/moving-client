@@ -4,7 +4,8 @@ import { TrashFill } from "react-bootstrap-icons";
 
 import "../../styles/Orders.scss";
 
-const Order = ({ i, title, datetime, description, car_body}) => {
+const OrderB = ({ i, title, datetime, description, car_body, isOwner}) => {
+  
   const [hover, setHover] = React.useState(false);
 
   const handleMouseOver = () => {
@@ -27,7 +28,7 @@ const Order = ({ i, title, datetime, description, car_body}) => {
             <Row>
               <Col className="col-10 card-title">Тапсырыс №{i + 1} • {title}</Col>
               <Col className="col-2 text-end">
-                <button className="btn delete-order-btn" hidden={false}>
+                <button className="btn delete-order-btn" hidden={ isOwner ? false : true}>
                   <TrashFill
                     hidden={hover ? false : true}
                     color="#fb8500"
@@ -75,4 +76,4 @@ const Order = ({ i, title, datetime, description, car_body}) => {
   );
 };
 
-export default Order;
+export default OrderB;
