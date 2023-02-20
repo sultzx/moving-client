@@ -107,9 +107,12 @@ const Profile = () => {
                  Жүйе ішінде тіркелген қызметкер клиенттердің тапсырысын орындай алады. Ол үшін төмендегі "Тапсырыстар" батырмасын басып, тізімдегі кез-келген тапсырысты орындай алады.
                 </Card.Text>
                 <Col className="col-12 d-flex column justify-content-end align-items-center">
-                  <Button variant="primary" className="" type="submit">
+                  <Link to={'../orders-for-employee'}>
+                   <Button variant="primary" className="" type="submit">
                     Тапсырыстар
                   </Button>
+                  </Link>
+
                 </Col>
               </Card.Body>
             </Card>  :         

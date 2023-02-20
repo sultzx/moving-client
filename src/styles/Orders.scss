@@ -77,13 +77,41 @@
 }
 
 .order-card-discription {
+  margin: 0px 0px 12px 0px;
+  padding: 12px;
+  border: 1px solid #fb8500;
+  border-radius: 6px;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
   color: #212529;
   height: 78px;
 }
-.order-card-status {
+
+.order-card-discription-label {
+  font-weight: 500px;
+  font-size: 18px;
+  margin: 20px 0 0px 0px;
   padding: 4px 8px;
+  color: #fb8500;
+  background-color: #FFE2C2;
+  border: 1px solid #fb8500;
+  border-bottom-color: transparent;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.order-card-status {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 3px 9px;
+  background-color: #fb8500;
+  margin: 12px 6px;
+  color: white;
+}
+
+.order-card-owner-img {
+  margin: 0 0 0 8px;
+  padding: 4px;
   border: 1px solid #fb8500;
   border-radius: 6px;
-  color: white;
-  background-color: #fb8500;
 }

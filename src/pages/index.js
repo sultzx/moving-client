@@ -7,7 +7,7 @@ import News from './News.jsx'
 import CreateOrder from './CreateOrder.jsx'
 import UpdateOrder from './UpdateOrder.jsx'
 import Orders from './Orders.jsx'
-
+import OrdersForEmp from './OrdersForEmp.jsx'
 export {
-    Main, Contact, News, Login, Registration, Profile, CreateOrder, UpdateOrder, Orders
+    Main, Contact, News, Login, Registration, Profile, CreateOrder, UpdateOrder, Orders, OrdersForEmp
 }
