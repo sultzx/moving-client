@@ -87,6 +87,16 @@
   height: 78px;
 }
 
+.order-card-discription.for-owner {
+  margin: 0px 0px 12px 0px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+
+  color: #212529;
+  height: 78px;
+}
+
 .order-card-discription-label {
   font-weight: 500px;
   font-size: 18px;
@@ -114,4 +124,10 @@
   padding: 4px;
   border: 1px solid #fb8500;
   border-radius: 6px;
+}
+
+.btn.btn-primary.outline {
+  border: 1px solid #fb8500;
+  background-color: transparent;
+  color: #fb8500;
 }

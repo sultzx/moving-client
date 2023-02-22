@@ -88,7 +88,7 @@ const OrderA = ({
                 </Row>
               </Col>
               <Col>
-                <p className="order-card-discription">{description}</p>
+                <p className="order-card-discription for-owner">{description}</p>
                 <Row>
                   <Col className="col-auto ">
                     <span className="order-card-status">{status}</span>

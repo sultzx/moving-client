@@ -1,11 +1,20 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import { Main, Contact, News, Login, Registration, Profile, CreateOrder, UpdateOrder, Orders, OrdersForEmp } from './pages/index.js'
-
+import { fetchAuthMe } from "./redux/slices/auth";
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    dispatch(fetchAuthMe())
+  }, [dispatch])
+
   return (
     <>
       <Header />

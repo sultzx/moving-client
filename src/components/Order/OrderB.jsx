@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { PersonFill, PinMapFill } from "react-bootstrap-icons";
+import { Container, Row, Col, Card, ButtonGroup, Button } from "react-bootstrap";
+import { PersonFill, PinMapFill, TelephoneOutboundFill} from "react-bootstrap-icons";
 
 import "../../styles/Orders.scss";
 
@@ -63,7 +63,7 @@ const OrderB = ({
               </Col>
               <Col className="col-12">
                 <p className="order-card-discription-label">Толығырақ</p>
-                <div className="order-card-discription">
+                <div className="order-card-discription ">
                   <p>{description}</p>
                 </div>
               </Col>
@@ -103,7 +103,8 @@ const OrderB = ({
 
               <Col xs={12} className="col-lg-9 col-xs-12 d-flex row align-items-center justify-content-end text-end">
                 <h5>{owner.name}&nbsp;<PersonFill color="#fb8500" size='28px'/>&nbsp;</h5>
-                <p>{owner.address}&nbsp;<PinMapFill color="#fb8500" size='22px'/> &nbsp;</p>
+                <span>{owner.phone}&nbsp;&nbsp;<TelephoneOutboundFill color="#fb8500" size='20px'/>&nbsp;&nbsp;</span>
+               <span>{owner.address}&nbsp;<PinMapFill color="#fb8500" size='22px'/> &nbsp;</span>
                     
               </Col>
               <Col className="col-lg-3 col-xs-12 d-flex column align-items-center justify-content-end">
@@ -111,6 +112,15 @@ const OrderB = ({
               </Col>
             </Row>
             <hr />
+            <Row>
+              <Col className="d-flex column justify-content-end">
+                <ButtonGroup>
+                    <button className="btn btn-primary outline">Хабарласу</button>
+                    <button className="btn btn-primary">{'Орындау'}</button>
+                </ButtonGroup>
+              
+              </Col>
+            </Row>
           </Container>
         </Card.Body>
       </Card>
