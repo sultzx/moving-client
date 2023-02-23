@@ -77,8 +77,7 @@ const Registration = () => {
               errorMessage && errorMessage
                 ? { borderColor: "red" }
                 : { borderRadius: "6px" }
-            }
-          >
+            }>
             {
               <div className="text-center" style={{ margin: "-12px" }}>
                 {errorMessage && <span>{errorMessage}</span>}
@@ -145,25 +144,22 @@ const Registration = () => {
                       </Col>
                       <Col className="d-flex column justify-content-center align-items-center">
                         <Nav.Item className="flex-fill">
-                          <Nav.Link
-                            className="switch-nav-link"
-                            eventKey="second"
+                          <Link
+                            style={{ textDecoration: "none", color: "#FB8500" }}
+                            to={"../registration-for-employee"}
                           >
-                            Қызметкер
-                          </Nav.Link>
+                            <Nav.Link href="/registration-for-employee" className="switch-nav-link">
+                              Қызметкер
+                            </Nav.Link>
+                          </Link>
                         </Nav.Item>
                       </Col>
                     </Row>
                   </Nav>
                   <hr />
                   <Row className="text-start">
-                    <Tab.Content>
-                      <Tab.Pane eventKey="first">
                         <Form onSubmit={handleSubmit(onSubmit)} method="post">
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicEmail"
-                          >
+                          <Form.Group className="mb-3">
                             <Form.Label>Қолданушы аты</Form.Label>
                             <Form.Control
                               style={
@@ -193,10 +189,7 @@ const Registration = () => {
                             />
                           </Form.Group>
 
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicEmail"
-                          >
+                          <Form.Group className="mb-3">
                             <Form.Label>Пошта</Form.Label>
                             <Form.Control
                               style={
@@ -221,10 +214,7 @@ const Registration = () => {
                             />
                           </Form.Group>
 
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicPassword"
-                          >
+                          <Form.Group className="mb-3">
                             <Form.Label>Құпия сөз</Form.Label>
                             <Form.Control
                               className="form-control-input"
@@ -254,15 +244,12 @@ const Registration = () => {
                             />
                           </Form.Group>
 
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicPassword"
-                          >
+                          <Form.Group className="mb-3">
                             <Form.Label>Құпия сөзді қайталаңыз</Form.Label>
                             <Form.Control
                               className="form-control-input"
                               style={
-                                Boolean(errors.password?.message)
+                                Boolean(errors.confirmPass?.message)
                                   ? {
                                       borderColor: "red",
                                       background: "rgba(255, 0, 0, 0.122)",
@@ -302,100 +289,6 @@ const Registration = () => {
                             </Button>
                           </Col>
                         </Form>
-                      </Tab.Pane>
-
-                      <Tab.Pane eventKey="second">
-                        <Form onSubmit={handleSubmit(onSubmit)}>
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicEmail"
-                          >
-                            <Form.Label>Қолданушы аты</Form.Label>
-                            <Form.Control
-                              // style={  Boolean(errors.username?.message) || Boolean(errors.email?.message)
-                              //   ? { borderColor: "#ED474A" }
-                              //   : { borderColor: "#FB8500" }}
-                              className="form-control-input"
-                              type="text"
-                              placeholder=""
-                            />
-                          </Form.Group>
-
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicEmail"
-                          >
-                            <Form.Label>Пошта</Form.Label>
-                            <Form.Control
-                              // style={  Boolean(errors.username?.message) || Boolean(errors.email?.message)
-                              //   ? { borderColor: "#ED474A" }
-                              //   : { borderColor: "#FB8500" }}
-                              className="form-control-input"
-                              type="email"
-                              placeholder=""
-                            />
-                          </Form.Group>
-
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicEmail"
-                          >
-                            <Form.Label>Компания</Form.Label>
-                            <Form.Control
-                              className="form-control-input"
-                              type="text"
-                              placeholder=""
-                            />
-                          </Form.Group>
-
-                          <hr />
-
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicPassword"
-                          >
-                            <Form.Label>Құпия сөз</Form.Label>
-                            <Form.Control
-                              className="form-control-input"
-                              type="password"
-                              placeholder=""
-                            />
-                          </Form.Group>
-
-                          <Form.Group
-                            className="mb-3"
-                            controlId="formBasicPassword"
-                          >
-                            <Form.Label>Құпия сөзді қайталаңыз</Form.Label>
-                            <Form.Control
-                              className="form-control-input"
-                              type="password"
-                              placeholder=""
-                            />
-                          </Form.Group>
-
-                          <Col className="col-12 d-flex column justify-content-end align-items-center">
-                            <Link to="/login">
-                              <Button
-                                variant="primary"
-                                className="switch-to-client-outline-btn"
-                              >
-                                Кіру бөліміне өту
-                              </Button>
-                            </Link>
-
-                            <Button
-                              disabled={!isValid}
-                              variant="primary"
-                              className=""
-                              type="submit"
-                            >
-                              Тіркелу
-                            </Button>
-                          </Col>
-                        </Form>
-                      </Tab.Pane>
-                    </Tab.Content>
                   </Row>
                 </Tab.Container>
               </Card.Body>
