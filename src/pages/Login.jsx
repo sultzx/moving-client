@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Tab,
   Container,
@@ -17,6 +18,7 @@ import { fetchAuth, selectIsAuth } from "../redux/slices/auth";
 import "../styles/Login.scss";
 
 const Login = () => {
+
   const dispatch = useDispatch();
 
   const isAuth = useSelector(selectIsAuth);

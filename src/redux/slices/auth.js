@@ -32,7 +32,7 @@ export const fetchAuthMe= createAsyncThunk('auth/fetchAuthMe', async () => {
 
 export const fetchUpdateMe= createAsyncThunk('auth/fetchUpdateMe', async (params, {rejectWithValue}) => {
     try {
-        const  response  = await axios.patch('/api/auth/update-profile', params)
+        const  response  = await axios.patch('/api/auth/update', params)
           return response.data  
       } catch (error) {
           if (!error.response) {

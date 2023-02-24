@@ -124,6 +124,7 @@ const Registration = () => {
         ) : (
           ""
         )}
+        
         <Row>
           <Col className="col-12 d-flex align-items-center justify-content-center">
             <Card className="registration-card text-center" sticky="top">
