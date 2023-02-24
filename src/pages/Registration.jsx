@@ -93,7 +93,7 @@ const Registration = () => {
           <Alert
             className="alert"
             variant={errors && errors && "danger"}
-            style={{ borderColor: "red", borderRadius: "6px" }}
+            style={{ borderColor: "red", borderRadius: "6px", textAlign: 'center' }}
           >
             {errors && errors.username && (
               <>

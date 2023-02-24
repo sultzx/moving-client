@@ -23,7 +23,6 @@ import {
 import "../styles/Profile.scss";
 
 const Profile = () => {
-  const isAuth = useSelector(selectIsAuth);
 
   const [errorMessage, setErrorMessage] = React.useState("");
 
@@ -168,7 +167,7 @@ const Profile = () => {
                     />
                   </Col>
                   <Col className="col-xs-12 ">
-                    <h3>{"user.username"}</h3>
+                    <h3>{userData && userData.username && userData.username}</h3>
                     <hr />
                     <Form onSubmit={handleSubmit(onSubmit)}>
                       <Row>

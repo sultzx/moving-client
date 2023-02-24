@@ -103,14 +103,14 @@ const OrderA = ({
           <Container>
             <Row>
               <Col className="col-6 d-flex column align-items-center">
-                <img width={"200px"} src={car_body.img} alt="" />
+                <img width={"200px"} src={`http://localhost:5000${car_body.img}`} alt="" />
               </Col>
               <Col className="col-6 d-flex row align-items-end text-end">
                 <p style={{ paddingRight: "0" }}>
-                  {car_body.characteristics.weight} кг дейін
+                  {car_body.weight} кг дейін
                 </p>
                 <p style={{ paddingRight: "0" }}>
-                  {car_body.characteristics.size} м
+                  {car_body.size} м
                 </p>
                 <p
                   style={{
@@ -119,7 +119,7 @@ const OrderA = ({
                     paddingRight: "0",
                   }}
                 >
-                  {car_body.characteristics.price} тнг
+                  {car_body.price} тнг
                 </p>
               </Col>
             </Row>
