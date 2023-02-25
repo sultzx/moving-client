@@ -1,20 +1,30 @@
 import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import { TrashFill } from "react-bootstrap-icons";
+import { TrashFill, PencilFill } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { fetchDeleteOrder } from "../../redux/slices/order";
 
 import "../../styles/Orders.scss";
 
 const OrderA = ({
   i,
+  id,
   title,
   datetime,
   description,
   category,
   car_body,
   status,
+  img,
   isOwner,
+  response
 }) => {
   const [hover, setHover] = React.useState(false);
+
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate()
 
   const handleMouseOver = () => {
     setHover(true);
@@ -39,6 +49,14 @@ const OrderA = ({
     }
   };
 
+  const onClickRemove = async () => {
+    
+    if(window.confirm('Точно оширгин кеп тур ма?')) {
+      let data = await dispatch(fetchDeleteOrder(id))
+      response(data && data.payload && data.payload.message)
+    }
+  };
+  
   return (
     <>
       <Card
@@ -49,13 +67,26 @@ const OrderA = ({
         <Card.Body className="d-flex row align-items-start">
           <Container>
             <Row>
-              <Col className="col-10 card-title">
+              <Col className="col-lg-8 col-md-6 col-sm-6 col-xs-6 card-title">
                 №{i + 1} • {title}
               </Col>
-              <Col className="col-2 text-end">
+
+              <Col className="col-lg-4 col-md-6 col-sm-6 col-xs-6  text-end">
+              <button
+                  className="btn delete-order-btn"
+                  hidden={isOwner ? false : true}
+                  onClick={()=> navigate(`/update-order/${id}`)}
+                >
+                  <PencilFill
+                    hidden={hover ? false : true}
+                    color="#fb8500"
+                    size={24}
+                  />
+                </button>
                 <button
                   className="btn delete-order-btn"
                   hidden={isOwner ? false : true}
+                  onClick={onClickRemove}
                 >
                   <TrashFill
                     hidden={hover ? false : true}
@@ -121,6 +152,21 @@ const OrderA = ({
                 >
                   {car_body.price} тнг
                 </p>
+              </Col>
+            </Row>
+          </Container>
+          
+          <Container>
+            <Row>
+              <Col className="d-flex">
+              <hr />
+                  <img 
+                  className="order-img img-fluid flex-fill cover" 
+                  onClick={ () => window.location.assign(`http://localhost:5000${img && img}`)}
+                  style={{
+                    maxHeight: '260px'
+                  }}
+                  src={`http://localhost:5000${img}`} alt="" />
               </Col>
             </Row>
           </Container>

@@ -65,7 +65,7 @@ const RegistrationForEmp = () => {
   };
 
   if (isAuth) {
-    return <Navigate to="/" />;
+    window.location.assign(`http://localhost:3000/profile`)
   }
 
   return (

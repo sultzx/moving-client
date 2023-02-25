@@ -16,6 +16,7 @@ import { fetchAuthMe } from "../redux/slices/auth";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios.js";
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom'
 
 import one from "../images/1.png";
 import two from "../images/2.png";
@@ -29,6 +30,8 @@ import { fetchCreateOrder } from "../redux/slices/order";
 
 const CreateOrder = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate()
 
   const inputFileRef = React.useRef(null);
 
@@ -131,6 +134,9 @@ const CreateOrder = () => {
         window.localStorage.setItem("token", data.payload.token);
       }
       dispatch(fetchAuthMe());
+
+      navigate('/orders')
+      
     }
   };
 

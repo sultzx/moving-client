@@ -71,6 +71,21 @@ export const fetchGetAllOrders = createAsyncThunk(
     }
   );
 
+  export const fetchStatusOrder = createAsyncThunk(
+    "news/fetchStatusOrder",
+    async (params, { rejectWithValue }) => {
+      try {
+        const response = await axios.patch(`/api/order/set-status/`, params);
+        return response.data;
+      } catch (error) {
+        if (!error.response) {
+          throw error;
+        }
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+
   const initialState = {
     orders: {
       items: [],
@@ -142,6 +157,18 @@ export const fetchGetAllOrders = createAsyncThunk(
         state.one.error = action.payload;
       },
   
+      [fetchStatusOrder.pending]: (state, action) => {
+        console.log(state.orders.items)
+        state.orders.items = state.orders.items.filter(
+            (obj) => obj._id != action.meta.arg
+        );
+    },
+
+    [fetchStatusOrder.rejected]: (state, action) => {
+        state.orders.status = 'error'
+        state.orders.error = action.payload
+    },
+  
   
       [fetchDeleteOrder.pending]: (state, action) => {
           console.log(state.orders.items)
@@ -151,13 +178,14 @@ export const fetchGetAllOrders = createAsyncThunk(
       },
       [fetchGetOneOrder.fulfilled]: (state, action) => {
           state.orders.status = "loaded";
+
           state.orders.items = action.payload;
         },
       [fetchDeleteOrder.rejected]: (state, action) => {
           state.orders.status = 'error'
           state.orders.error = action.payload
       }
-    },
+    }
   });
   
   export const ordersReducer = ordersSlice.reducer;
