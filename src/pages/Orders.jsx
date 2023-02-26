@@ -14,7 +14,11 @@ const Orders = () => {
     dispatch(fetchGetAllOrders())
   },[])
 
+  const userData = useSelector((state) => state.auth.data);
+
   const { orders } = useSelector((state) => state.orders);
+
+  const [sorted, setSorted] = React.useState()
 
   const inputFileRef = React.useRef(null);
 
@@ -29,6 +33,19 @@ const Orders = () => {
     const handleGetResponse = (response) => {
       setResponseMessage(response)
     }
+
+    // const sorted = []
+
+
+
+    React.useEffect(() => {
+      orders && orders.items && orders.items.forEach((item, i) => {
+      console.log('usr id', userData && userData._id, 'item id', item.owner._id)
+      if ((userData && userData._id) == item.owner._id) {
+        setSorted(item)
+      }
+    })
+    }, [orders])
 
   return (
     <>
@@ -54,6 +71,7 @@ const Orders = () => {
         <Row> 
         <h3>Менің тапсырыстарым</h3>
           { orders && orders.items && orders.items.map((item, i) => (
+            item.owner._id == (userData && userData._id)  && 
             <Col lg={4} md={6} sm={12} xs={12}>
               <Order
                 key={i}
