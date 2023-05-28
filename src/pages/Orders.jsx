@@ -1,10 +1,13 @@
 import React from "react";
-import { Container, Row, Col, Button, Card, Form, Alert } from "react-bootstrap";
+import { Container, Row, Col, Button, Card, Form, Alert, Modal } from "react-bootstrap";
 
 import Order from "../components/Order/OrderA"
 import "../styles/Orders.scss"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchGetAllOrders } from "../redux/slices/order.js"
+import { fetchGetAllCars } from "../redux/slices/auth";
+import { Rating } from 'react-simple-star-rating'
+import CarBody from "../components/CarBody/CarBody";
 
 const Orders = () => {
 
@@ -12,11 +15,17 @@ const Orders = () => {
 
   React.useEffect(() => {
     dispatch(fetchGetAllOrders())
+    dispatch(fetchGetAllCars())
   },[])
 
   const userData = useSelector((state) => state.auth.data);
 
   const { orders } = useSelector((state) => state.orders);
+  const cars = useSelector(state => state.auth.cars.items);
+/////////////////////////////////////////////////////////////
+
+
+  //////////////////////////////////////////////////////////
 
   const [sorted, setSorted] = React.useState()
 
@@ -47,6 +56,11 @@ const Orders = () => {
     })
     }, [orders])
 
+    console.log(orders && orders.items)
+
+    console.log('cars', cars && cars)
+    
+
   return (
     <>
       <Container>
@@ -72,7 +86,7 @@ const Orders = () => {
         <h3>Менің тапсырыстарым</h3>
           { orders && orders.items && orders.items.map((item, i) => (
             item.owner._id == (userData && userData._id)  && 
-            <Col lg={4} md={6} sm={12} xs={12}>
+            <Col md={6} sm={12} xs={12}>
               <Order
                 key={i}
                 i={i}
@@ -81,7 +95,13 @@ const Orders = () => {
                 datetime={item.datetime}
                 description={item.description}
                 category={item.category}
-                car_body={item.carBody}
+                car={item.car}
+                cars={cars}
+                driver={
+                  cars?.map((c, i) => c?._id == item?.car?._id &&  c?.driver)
+                }
+                clientPrice={item?.clientPrice}
+                driverPrice={item?.driverPrice}
                 status={item.status}
                 img={item.img}
                 isOwner={true}

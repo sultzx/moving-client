@@ -146,7 +146,7 @@ const Registration = () => {
                       <Col className="d-flex column justify-content-center align-items-center">
                         <Nav.Item className="flex-fill">
                           <Link
-                            style={{ textDecoration: "none", color: "#FB8500" }}
+                            style={{ textDecoration: "none", color: "#D9ED92" }}
                             to={"../registration-for-employee"}
                           >
                             <Nav.Link href="/registration-for-employee" className="switch-nav-link">
@@ -169,7 +169,7 @@ const Registration = () => {
                                       borderColor: "red",
                                       background: "rgba(255, 0, 0, 0.122)",
                                     }
-                                  : { borderColor: "#FB8500" }
+                                  : { borderColor: "#D9ED92" }
                               }
                               className="form-control-input"
                               {...register("username", {
@@ -199,7 +199,7 @@ const Registration = () => {
                                       borderColor: "red",
                                       background: "rgba(255, 0, 0, 0.122)",
                                     }
-                                  : { borderColor: "#FB8500" }
+                                  : { borderColor: "#D9ED92" }
                               }
                               className="form-control-input"
                               {...register("email", {
@@ -225,7 +225,7 @@ const Registration = () => {
                                       borderColor: "red",
                                       background: "rgba(255, 0, 0, 0.122)",
                                     }
-                                  : { borderColor: "#FB8500" }
+                                  : { borderColor: "#D9ED92" }
                               }
                               {...register("password", {
                                 required: "Құпия сөзді енгізіңіз",
@@ -255,7 +255,7 @@ const Registration = () => {
                                       borderColor: "red",
                                       background: "rgba(255, 0, 0, 0.122)",
                                     }
-                                  : { borderColor: "#FB8500" }
+                                  : { borderColor: "#D9ED92" }
                               }
                               {...register("confirmPass", {
                                 required: "Құпия сөзді қайта енгізіңіз",

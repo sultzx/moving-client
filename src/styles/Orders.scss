@@ -1,40 +1,54 @@
 .order-card {
     margin: 14px 0 14px 0px;
-    border: 1px solid #fb8500;
+    border: 1px solid #34A0A4;
     border-radius: 12px;
-    background: linear-gradient(50deg, #fee1c0b3 50%, #fdc3808a);
+    background:  #52B69A;
     .card-body {
       .card-title {
           font-size: 20px;
-          color:#fb8500;
+          color: white;
           margin-bottom: 20px;
           font-weight: 600;
           transition-duration: 0.5s;
+      };
+      p {
+        transition: 0.5s;
+        color: white;
       }
     }
     transition-duration: 0.6s;
 }
 .order-card:hover {
     cursor: pointer;
-    border: 1px solid #fb8500;
+    border: 1px solid #34A0A4;
     background: white;
     .card-body {
       .card-title {
           font-size: 20px;
-          color:#fb8500;
+          color:#34A0A4;
           margin-bottom: 20px;
       }
+    };
+    p {
+      color: #52B69A;
     }
 }
 
 .delete-order-btn {
-  color: #fb8500;
   margin: 0px;
+  .icon {
+    transition: 0.5s;
+  }
+  transition: 0.5s;
 }
 
-.order-card-date {
-  color: #6C757D;
+.delete-order-btn:hover {
+  margin: 0px;
+  .icon:hover {
+    color: #52B69A;
+  }
 }
+
 
 .order-card-date.today {
   color: white;
@@ -84,7 +98,7 @@
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
   color: #212529;
-  height: 78px;
+  // height: 78px;
 }
 
 .order-card-discription.for-owner {
@@ -94,7 +108,7 @@
   border-radius: 6px;
 
   color: #212529;
-  height: 78px;
+  // height: 78px;
 }
 
 .order-card-discription-label {

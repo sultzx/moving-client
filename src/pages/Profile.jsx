@@ -13,10 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import axios from "../axios.js";
+import { Rating } from 'react-simple-star-rating'
 
 import {
   selectIsAuth,
   fetchUpdateMe,
+  fetchUpdateCar,
+  fetchGetOneCars,
   fetchAuthMe,
 } from "../redux/slices/auth.js";
 
@@ -26,13 +29,58 @@ const Profile = () => {
 
   const [errorMessage, setErrorMessage] = React.useState("");
 
+  const dispatch = useDispatch();
+
   const userData = useSelector((state) => state.auth.data);
 
-  const dispatch = useDispatch();
+  const myCar = useSelector(state => state.auth.cars)
+
+  React.useEffect(() => {
+     dispatch(fetchGetOneCars())
+  }, [])
+
+  console.log(myCar?.data?.[0]?.brand)
 
   const inputFileRef = React.useRef(null);
 
   const isEmployee = userData && userData.role == "employee";
+
+  const [brand, setBrand] = React.useState(myCar?.data?.[0]?.brand)
+
+  const [model, setModel] = React.useState()
+
+  const [carImg, setCarImg] = React.useState(`http://localhost:5000${myCar?.data?.[0]?.img}`)
+
+  const [number, setNumber] = React.useState()
+
+  const [color, setColor] = React.useState()
+
+  const [body, setBody] = React.useState()
+
+  console.log(myCar?.data?.[0])
+
+  const colorOptions = [
+    { value: "0", text: "-- Көлік түсін таңдаңыз --" },
+    { value: "1", text: "Қызыл" },
+    { value: "2", text: "Сарығыш" },
+    { value: "3", text: "Сары" },
+    { value: "4", text: "Жасыл" },
+    { value: "5", text: "Көк" },
+    { value: "6", text: "Қоңыр" },
+    { value: "7", text: "Қара" },
+    { value: "8", text: "Ақ" },
+  ];
+
+  const bodyOptions = [
+    { value: "0", text: "-- Кузовты таңдаңыз --" },
+    { value: "1", text: "Седан" },
+    { value: "2", text: "Кроссовер" },
+    { value: "3", text: "Хэтчбек" },
+    { value: "4", text: "Универсал" },
+    { value: "5", text: "Купе" },
+    { value: "6", text: "Минивен" },
+    { value: "7", text: "Фургон" },
+  ];
 
   const handleChangeFile = async (event) => {
     try {
@@ -47,6 +95,20 @@ const Profile = () => {
       alert("Бейнені көшіру кезінде қате шықты");
     }
     dispatch(fetchAuthMe());
+  };
+
+  const handleSelectCar = async (event) => {
+    try {
+      const formData = new FormData();
+      const file = event.target.files[0];
+      formData.append("image", file);
+      const { data } = await axios.post("/api/upload/cars", formData);
+      console.log();
+      setCarImg(data.url)
+    } catch (error) {
+      console.warn(error);
+      alert("Бейнені көшіру кезінде қате шықты");
+    }
   };
 
   const {
@@ -82,6 +144,12 @@ const Profile = () => {
 
     dispatch(fetchAuthMe());
   };
+
+  const updateCar = async () => {
+      await dispatch(fetchUpdateCar({
+        brand: brand && brand, model: model && model, number: number && number, color: color && color, body: body && body
+      }))
+  }
 
   return (
     <>
@@ -154,9 +222,8 @@ const Profile = () => {
                       onClick={() => {
                         inputFileRef.current.click();
                       }}
-                      src={`http://localhost:5000${
-                        userData && userData.avatar && userData.avatar
-                      }`}
+                      src={`http://localhost:5000${userData && userData.avatar && userData.avatar
+                        }`}
                       alt=""
                     />
                     <input
@@ -167,7 +234,7 @@ const Profile = () => {
                     />
                   </Col>
                   <Col className="col-xs-12 ">
-                    <h3>{userData && userData.username && userData.username}</h3>
+                    <h3 className="client-fullname"> {userData && userData.username && userData.username} </h3>
                     <hr />
                     <Form onSubmit={handleSubmit(onSubmit)}>
                       <Row>
@@ -178,10 +245,10 @@ const Profile = () => {
                               style={
                                 Boolean(errors.name?.message)
                                   ? {
-                                      borderColor: "red",
-                                      background: "rgba(255, 0, 0, 0.122)",
-                                    }
-                                  : { borderColor: "#FB8500" }
+                                    borderColor: "red",
+                                    background: "rgba(255, 0, 0, 0.122)",
+                                  }
+                                  : { borderColor: "#52B69A" }
                               }
                               {...register("name", {
                                 required: "Аты-жөніңізды енгізіңіз",
@@ -193,11 +260,10 @@ const Profile = () => {
                               })}
                               className="form-control-input"
                               type="text"
-                              placeholder={`${
-                                userData && userData.name && userData.name
+                              placeholder={`${userData && userData.name && userData.name
                                   ? userData.name
                                   : ""
-                              }`}
+                                }`}
                             />
                           </Form.Group>
                         </Col>
@@ -208,10 +274,10 @@ const Profile = () => {
                               style={
                                 Boolean(errors.phone?.message)
                                   ? {
-                                      borderColor: "red",
-                                      background: "rgba(255, 0, 0, 0.122)",
-                                    }
-                                  : { borderColor: "#FB8500" }
+                                    borderColor: "red",
+                                    background: "rgba(255, 0, 0, 0.122)",
+                                  }
+                                  : { borderColor: "#52B69A" }
                               }
                               {...register("phone", {
                                 required: "Телефон нөміріңізді енгізіңіз",
@@ -223,11 +289,10 @@ const Profile = () => {
                               })}
                               className="form-control-input"
                               type="text"
-                              placeholder={`${
-                                userData && userData.phone && userData.phone
+                              placeholder={`${userData && userData.phone && userData.phone
                                   ? userData.phone
                                   : ""
-                              }`}
+                                }`}
                             />
                           </Form.Group>
                         </Col>
@@ -240,29 +305,26 @@ const Profile = () => {
                               style={
                                 Boolean(errors.addressOrCompany?.message)
                                   ? {
-                                      borderColor: "red",
-                                      background: "rgba(255, 0, 0, 0.122)",
-                                    }
-                                  : { borderColor: "#FB8500" }
+                                    borderColor: "red",
+                                    background: "rgba(255, 0, 0, 0.122)",
+                                  }
+                                  : { borderColor: "#52B69A" }
                               }
                               {...register("addressOrCompany", {
-                                required: `${
-                                  isEmployee
+                                required: `${isEmployee
                                     ? "Компанияңызды"
                                     : "Мекен-жайыңызды"
-                                } енгізіңіз`,
+                                  } енгізіңіз`,
                                 minLength: {
                                   value: 3,
-                                  message: `${
-                                    isEmployee ? "Компанияңыз" : "Мекен-жайыңыз"
-                                  } 3 символдан кем болмауы керек`,
+                                  message: `${isEmployee ? "Компанияңыз" : "Мекен-жайыңыз"
+                                    } 3 символдан кем болмауы керек`,
                                 },
                               })}
                               className="form-control-input"
-                              placeholder={`${
-                                userData &&
-                                userData.role &&
-                                userData.role == "employee"
+                              placeholder={`${userData &&
+                                  userData.role &&
+                                  userData.role == "employee"
                                   ? userData &&
                                     userData.company &&
                                     userData.company
@@ -271,9 +333,9 @@ const Profile = () => {
                                   : userData &&
                                     userData.address &&
                                     userData.address
-                                  ? userData.address
-                                  : ""
-                              }`}
+                                    ? userData.address
+                                    : ""
+                                }`}
                             />
                           </Form.Group>
                         </Col>
@@ -298,23 +360,116 @@ const Profile = () => {
           <Col className="col-12">
             <br />
             {isEmployee ? (
-              <Card className="profile-card">
-                <Card.Body>
-                  <Card.Title>Тапсырыс орындау</Card.Title>
-                  <Card.Text>
-                    Жүйе ішінде тіркелген қызметкер клиенттердің тапсырысын
-                    орындай алады. Ол үшін төмендегі "Тапсырыстар" батырмасын
-                    басып, тізімдегі кез-келген тапсырысты орындай алады.
-                  </Card.Text>
-                  <Col className="col-12 d-flex column justify-content-end align-items-center">
-                    <Link to={"../orders-for-employee"}>
-                      <Button variant="primary" className="" type="submit">
-                        Тапсырыстар
-                      </Button>
-                    </Link>
-                  </Col>
-                </Card.Body>
-              </Card>
+              <>
+                <Card className="profile-card">
+                  <Card.Body>
+                    <Card.Title>Жеке автокөлік мәліметі</Card.Title>
+
+                    <Row>
+
+                      <Col md={4}>
+                        <label style={{ color: 'white' }}>
+                          Маркасы
+                        </label>
+                        <input type="text" onChange={event => setBrand(event.target.value)} defaultValue={myCar?.data?.[0].brand} placeholder="Маркасын жазыңыз" className="form-control" />
+                      </Col>
+
+                      <Col md={4}>
+                        <label style={{ color: 'white' }}>
+                          Моделі
+                        </label>
+                        <input type="text" onChange={event => setModel(event.target.value)} defaultValue={myCar?.data?.[0].model} placeholder="Моделін жазыңыз" className="form-control" />
+                      </Col>
+
+                      <Col md={4}>
+                        <label style={{ color: 'white' }}>
+                          Нөмірі
+                        </label>
+                        <input type="text" onChange={event => setNumber(event.target.value)} defaultValue={myCar?.data?.[0].number} placeholder="Нөмірін жазыңыз" className="form-control" />
+                      </Col>
+                      <Col md={12} style={{margin: '8px auto'}}></Col>
+                      <Col md={4}>
+                        <label style={{ color: 'white' }}>
+                          Көлік бейнесі
+                        </label>
+                        <input type="file" className="form-control" onChange={(event) => {handleSelectCar(event)}} />
+                        <img src={myCar?.data?.[0]?.img ? `http://localhost:5000${myCar?.data?.[0]?.img}` : carImg ? `http://localhost:5000${carImg}` : '' } style={{
+                          border: '1px solid',
+                          borderRadius: '4px',
+                          margin: '18px auto'
+                        }} height={'200px'} className="img-fluid" width={'300px'} />
+                      </Col>
+
+                      <Col md={4}>
+                        <label style={{ color: 'white' }} >
+                          Кузовы - {myCar?.data?.[0].body}
+                        </label>
+                        <Form.Select
+                          selected={body}
+                          onChange={event => setBody(bodyOptions[event.target.value].text)}
+                          className="form-control select-input"
+                        >
+                          {bodyOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.text}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      </Col>
+                      <Col md={4}>
+                        <label style={{ color: 'white' }}>
+                          Түсі - {myCar?.data?.[0].color}
+                        </label>
+                        <Form.Select
+                          selected={color}
+                          onChange={event => setColor(colorOptions[event.target.value].text)}
+                          className="form-control select-input">
+                          {colorOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.text}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      </Col>
+
+                      <Col md={12}>
+                            <label style={{color: 'white'}}>
+                              Жүргізуші жеке рейтингі
+                            </label>
+                            <hr />
+                            <Rating
+                              readonly
+                              initialValue={myCar?.data?.[0]?.rating}/>
+                            <hr />
+                      </Col>
+                    </Row>
+                    <Col className="col-12 d-flex column justify-content-end align-items-center">
+                        <Button variant="primary" className="" onClick={updateCar} >
+                          Сақтау
+                        </Button>
+                    </Col>
+                  </Card.Body>
+                </Card>
+                <br />
+                <Card className="profile-card">
+                  <Card.Body>
+                    <Card.Title>Тапсырыс орындау</Card.Title>
+                    <Card.Text>
+                      Жүйе ішінде тіркелген қызметкер клиенттердің тапсырысын
+                      орындай алады. Ол үшін төмендегі "Тапсырыстар" батырмасын
+                      басып, тізімдегі кез-келген тапсырысты орындай алады.
+                    </Card.Text>
+                    <Col className="col-12 d-flex column justify-content-end align-items-center">
+                      <Link to={"../orders-for-employee"}>
+                        <Button variant="primary" className="" type="submit">
+                          Тапсырыстар
+                        </Button>
+                      </Link>
+                    </Col>
+                  </Card.Body>
+                </Card>
+              </>
+
             ) : (
               <Card className="profile-card">
                 <Card.Body>

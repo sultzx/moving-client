@@ -21,7 +21,9 @@ const Main = () => {
 
               <Col className="col-12">
                 <Link to="/profile">
-                  <Button className="btn btn-primary">Тапсырыс беру</Button>
+                  <Button className="btn btn-primary" style={{border: '1px solid #34A0A4',
+                  background: '#34A0A4', color: 'white'
+                }}>Тапсырыс беру</Button>
                 </Link>
               </Col>
             </Row>

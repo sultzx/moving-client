@@ -1,9 +1,9 @@
 .navbar {
-    background: linear-gradient(100deg, white, #fee1c0b3 50%, #fdc3808a);
+    background: linear-gradient(100deg, #52B69A 50%, #34A0A4);
     font-size: medium;
     font-weight: 500;
     .nav-link {
-        color:#FB8500;
+        color:white;
     }
 }
 
@@ -16,16 +16,19 @@
 }
 
 .login-btn:hover {
-    border: 1px solid #FB8500;
+    border: 1px solid #52B69A;
     color: white;
-    background: #FB8500;
+    background: #52B69A;
 }
 
 .link-to-nav-items {
     text-decoration: none;
-    color: #FB8500;
+    color: white;
+    font-size: large;
+    text-shadow: 2px 2px 2px gray;
+    transition-duration: 0.5s;
 }
 
 .link-to-nav-items:hover {
-    color: #FCA440;
+    color: #B5E48C;
 }

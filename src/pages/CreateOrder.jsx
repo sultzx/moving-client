@@ -12,23 +12,19 @@ import {
 
 import "../styles/CreateOrder.scss";
 import { Box2Fill } from "react-bootstrap-icons";
-import { fetchAuthMe } from "../redux/slices/auth";
+import { fetchAuthMe, fetchGetAllCars } from "../redux/slices/auth";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios.js";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom'
 
-import one from "../images/1.png";
-import two from "../images/2.png";
-import three from "../images/3.png";
-import four from "../images/4.png";
-import five from "../images/5.png";
-import six from "../images/6.png";
-import seven from "../images/7.png";
 import CarBody from "../components/CarBody/CarBody";
 import { fetchCreateOrder } from "../redux/slices/order";
 
+import { Rating } from 'react-simple-star-rating'
+
 const CreateOrder = () => {
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
@@ -37,7 +33,7 @@ const CreateOrder = () => {
 
   const [errorMessage, setErrorMessage] = React.useState("");
 
-  const [selectedCarBody, setSelectedCarBody] = React.useState("");
+  const [selectedCar, setSelectedCar] = React.useState("");
 
   const [orderImgUrl, setOrderImgUrl] = React.useState("");
 
@@ -45,12 +41,27 @@ const CreateOrder = () => {
 
   const [selectedDate, setSelectedDate] = React.useState("");
 
+  const [price, setPrice] = React.useState()
+
   const [show, setShow] = React.useState(false);
+
+  const [selectedCarShow, setSelectedCarShow] = React.useState(false)
 
   const userData = useSelector((state) => state.auth.data);
 
+  const cars = useSelector(state => state.auth.cars.items);
+
+  React.useEffect(() => {
+    dispatch(fetchGetAllCars())
+  }, [])
+
+  console.log(cars && cars)
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSelectedCarClose = () => setSelectedCarShow(false);
+  const handleSelectedCarShow = () => setSelectedCarShow(true);
 
   const categoryOptions = [
     { value: "0", text: "Категорияны таңдаңыз" },
@@ -70,9 +81,10 @@ const CreateOrder = () => {
     setCategory(categoryOptions[event.target.value].text);
   };
 
-  const handleSelectCarBody = (data) => {
-    setSelectedCarBody(data);
+  const handleSelectCar = (data) => {
+    setSelectedCar(data);
     handleClose();
+    handleSelectedCarShow()
   };
 
   const handleChangeFile = async (event) => {
@@ -82,7 +94,7 @@ const CreateOrder = () => {
       formData.append("image", file);
       const { data } = await axios.post("/api/upload/order", formData);
       setOrderImgUrl(
-      data && data.url
+        data && data.url
       );
     } catch (error) {
       console.warn(error);
@@ -103,32 +115,30 @@ const CreateOrder = () => {
     mode: "onChange",
   });
 
-  console.log(selectedCarBody && selectedCarBody)
+  const [allNotValid, setAllNotValid] = React.useState (
+        (category == "Категорияны таңдаңыз") ||
+    (selectedDate == "Уақытты таңдаңыз") ||
+    (selectedCar == "") ||
+    (orderImgUrl == "")
+  )
 
-  const [allNotValid, setAllNotValid] = React.useState
-  ( category == "Категорияны таңдаңыз") || 
-  ( selectedDate == "Уақытты таңдаңыз") ||
-  ( selectedCarBody == "Таңдаңыз") ||
-  ( orderImgUrl == "")
 
   console.log(Boolean(allNotValid))
 
   const onSubmit = async (values) => {
 
-    if (allNotValid) {
-          setErrorMessage("Форманы дұрыс толтырыңыз")
-    } else {
 
-      const data = await dispatch (fetchCreateOrder({
+      const data = await dispatch(fetchCreateOrder({
         title: values.title,
         description: values.description,
         category: category && category,
         datetime: selectedDate && selectedDate,
-        carBody: selectedCarBody && selectedCarBody,
+        price: price && price,
+        car: selectedCar && selectedCar,
         img: orderImgUrl && orderImgUrl,
       }));
 
-      setErrorMessage(data.payload.message);
+      alert(data.payload.message);
 
       if ("token" in data.payload) {
         window.localStorage.setItem("token", data.payload.token);
@@ -136,8 +146,7 @@ const CreateOrder = () => {
       dispatch(fetchAuthMe());
 
       navigate('/orders')
-      
-    }
+
   };
 
   console.log(selectedDate, category);
@@ -167,8 +176,8 @@ const CreateOrder = () => {
         )}
 
         {errors &&
-        errors.title ||
-          errors.description  ? (
+          errors.title ||
+          errors.description ? (
           <Alert
             className="alert"
             variant={errors && errors && "danger"}
@@ -212,10 +221,10 @@ const CreateOrder = () => {
                                   style={
                                     Boolean(errors.title?.message)
                                       ? {
-                                          borderColor: "red",
-                                          background: "rgba(255, 0, 0, 0.122)",
-                                        }
-                                      : { borderColor: "#FB8500" }
+                                        borderColor: "red",
+                                        background: "rgba(255, 0, 0, 0.122)",
+                                      }
+                                      : { borderColor: "#34A0A4" }
                                   }
                                   {...register("title", {
                                     required: "Тапсырыс атауын енгізіңіз",
@@ -238,10 +247,10 @@ const CreateOrder = () => {
                                   style={
                                     Boolean(errors.description?.message)
                                       ? {
-                                          borderColor: "red",
-                                          background: "rgba(255, 0, 0, 0.122)",
-                                        }
-                                      : { borderColor: "#FB8500" }
+                                        borderColor: "red",
+                                        background: "rgba(255, 0, 0, 0.122)",
+                                      }
+                                      : { borderColor: "#34A0A4" }
                                   }
                                   {...register("description", {
                                     required: "Тапсырыс сипаттамасын енгізіңіз",
@@ -326,6 +335,9 @@ const CreateOrder = () => {
                                       defaultValue="asd"
                                       className="order-select-date flex-fill"
                                       type="date"
+                                      style={{
+                                        borderColor: '#34A0A4'
+                                      }}
                                       onChange={(event) => {
                                         setSelectedDate(
                                           new Date(
@@ -344,15 +356,17 @@ const CreateOrder = () => {
                             </Col>
                             <Col lg={12}>
                               <Form.Group className="mb-3 d-flex row justify-content-center align-items-center">
-                                <Form.Label>Көлік түрі</Form.Label>
+                                <Form.Label>Көлік</Form.Label>
                                 <Button
                                   onClick={handleShow}
                                   className="choose-car-body-btn flex-fill"
-                                  style={{ margin: "0 12px 0 12px" }}
+                                  style={{ margin: "0 12px 0 12px", borderColor: '#34A0A4', color: '#34A0A4' }}
                                 >
-                                  {selectedCarBody && selectedCarBody
-                                    ? selectedCarBody
-                                    : "Таңдаңыз"}{" "}
+                                  {
+                                    cars?.map((car, i) => car?._id == selectedCar ? (
+                                        <>{car?.color} {car?.brand} {car?.model} {car?.number}</>
+                                    ): "Таңдаңыз")}
+                                    
                                   &nbsp;
                                   <Box2Fill />
                                 </Button>
@@ -373,10 +387,15 @@ const CreateOrder = () => {
                                       : altImage
                                   }
                                   alt=""
+                                  style={{
+                                    borderColor: '#34A0A4'
+                                  }}
                                   onClick={() => {
                                     inputFileRef.current.click();
                                   }}
                                 />
+
+
                                 <input
                                   type="file"
                                   ref={inputFileRef}
@@ -390,6 +409,15 @@ const CreateOrder = () => {
                       </Row>
 
                       <hr />
+                      <Row>
+                        <Col md={12} >
+                          <h3 style={{color: 'white'}}>
+                            Cіз ұсынған баға: {price && price} тнг
+                          </h3>
+                          
+                        </Col>
+                      </Row>
+                      <hr />
                       <Col className="col-12 d-flex column justify-content-end align-items-center">
                         <Button
                           variant="primary"
@@ -401,8 +429,7 @@ const CreateOrder = () => {
                           disabled={!isValid}
                           variant="primary"
                           className=""
-                          type="submit"
-                        >
+                          type="submit">
                           Сақтау
                         </Button>
                       </Col>
@@ -417,84 +444,79 @@ const CreateOrder = () => {
 
       <Modal show={show} onHide={handleClose} fullscreen>
         <Modal.Header closeButton>
-          <Modal.Title>Көлік түрін таңдау</Modal.Title>
+          <Modal.Title>Көлікті таңдау</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Row>
-            <CarBody
-              title={"Кіші кузов"}
-              img={one}
-              text={"шағын құрылғылар, креслолар немесе шкаф сыйады"}
-              weight={"400"}
-              size={"1.7 / 1 / 0.9"}
-              price={"2000"}
-              select={() => handleSelectCarBody("Кіші кузов")}
-            />
-            <CarBody
-              title={"Микроавтобус"}
-              img={two}
-              text={"шағын жиһаздар мен қораптарды тасымалдауға арналған"}
-              weight={"750"}
-              size={"2.1 / 1.7 / 2.1"}
-              price={"2800"}
-              select={() => handleSelectCarBody("Микроавтобус")}
-            />
-            <CarBody
-              title={"Орта кузов"}
-              img={three}
-              text={"ішінде заттары бар қорабтар мен диван сыйады"}
-              weight={"1500"}
-              size={"3.0 / 2.0 / 2.0"}
-              price={"3200"}
-              select={() => handleSelectCarBody("Орта кузов")}
-            />
-            <CarBody
-              title={"Үлкен кузов"}
-              img={seven}
-              text={
-                "үлкен құрылғылар, барлық жиһаздар мен қораптар сәйкес сыйады"
-              }
-              weight={"5000"}
-              size={"5.8 / 2.45 / 2.2"}
-              price={"6500"}
-              select={() => handleSelectCarBody("Үлкен кузов")}
-            />
-            <CarBody
-              title={"Борттық жүк көлігі"}
-              img={four}
-              text={
-                "жиналмалы жақтары бар, үлкен жиһаздар мен құрылыс материалдары сыйады"
-              }
-              weight={"7000"}
-              size={"2.0 / 5.0 / 2.2"}
-              price={"7600"}
-              select={() => handleSelectCarBody("Борттық жүк көлігі")}
-            />
-            <CarBody
-              title={"Фура"}
-              img={six}
-              text={
-                "қалааралық, барлық жиһаздар мен құрылыс материалдары сыйады"
-              }
-              weight={"20000"}
-              size={"13.6 / 2.46 / 2.7"}
-              price={"16400"}
-              select={() => handleSelectCarBody("Фура")}
-            />
-            <CarBody
-              title={"Рефрижератор"}
-              img={five}
-              text={"тағамдар мен дәрі-дәрмектер температурасы сақталады"}
-              weight={"1500"}
-              size={"3.0 / 2.0 / 2.0"}
-              price={"4100"}
-              select={() => handleSelectCarBody("Рефрижератор")}
-            />
+            {
+              cars?.map((car, i) => (
+                <CarBody
+                  title={car?.brand}
+                  model={car?.model}
+                  number={car?.number}
+                  color={car?.color}
+                  body={car?.body}
+                  rating={car?.rating}
+                  driver={car?.driver && car?.driver}
+                  img={`http://localhost:5000${car?.img}`}
+                  select={() => handleSelectCar(car?._id)} />))
+            }
           </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Жабу
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={selectedCarShow} onHide={handleSelectedCarClose} centered >
+        <Modal.Header closeButton>
+          <Modal.Title>{
+            cars?.map((car, i) => car?._id == selectedCar && (
+              <p style={{ color: 'black' }}>{car?.color} {car?.brand} {car?.model}</p>
+            ))
+          }</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Row>
+            {
+              cars?.map((car, i) => car?._id == selectedCar && (<>
+                <img src={`http://localhost:5000${car?.img}`} width={'auto'} alt="" />
+                <Row style={{ margin: '24px auto' }}>
+                  <Col md={4}>
+
+                    <img src={`http://localhost:5000${car?.driver?.avatar}`} width={'100px'} height={'100px'} style={{
+                      border: '1px solid',
+                      borderRadius: '50%'
+                    }} alt="" />
+
+                  </Col>
+                  <Col md={8}>
+                    <h6>{car?.driver?.name}</h6>
+                    <h6>{car?.driver?.phone}</h6>
+                    <h6>{car?.number}</h6>
+                    <Rating size={30} readonly initialValue={car?.rating?.reduce((a, b) => a + b, 0) / car?.rating?.length} /> &nbsp;
+                    <span style={{
+                      fontSize: '18px'
+                    }}>{car?.rating?.reduce((a, b) => a + b, 0) / car?.rating?.length}</span>
+                  </Col>
+
+                </Row>
+                <hr />
+                    <input type="number" onChange={event => setPrice(event.target.value)} className="form-control" placeholder="Енгізіңіз" />
+
+              </>
+
+              ))
+            }
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSelectedCarClose}
+          style={{border: '1px solid', background: '#34A0A4', color: 'white'}}
+            >
+            Баға ұсыну
           </Button>
         </Modal.Footer>
       </Modal>

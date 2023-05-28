@@ -10,6 +10,7 @@ import UpdateOrder from './UpdateOrder.jsx'
 import Orders from './Orders.jsx'
 import OrdersForEmp from './OrdersForEmp.jsx'
 import Services from './Services.jsx'
+import Admin from './Admin.jsx'
 export {
-    Main, Contact, News, Login, Registration,RegistrationForEmp, Profile, CreateOrder, UpdateOrder, Orders, OrdersForEmp, Services
+  Admin,  Main, Contact, News, Login, Registration,RegistrationForEmp, Profile, CreateOrder, UpdateOrder, Orders, OrdersForEmp, Services
 }

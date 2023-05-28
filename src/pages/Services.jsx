@@ -34,7 +34,7 @@ const Services = () => {
             />
             <Row>
                 <Col className="col-12">
-                    <h4 style={{color:"#fb8500"}}>Ыңғайлы тарифтар</h4>
+                    <h4 style={{color:"white"}}>Ыңғайлы тарифтар</h4>
                 </Col>
                 <Col className="col-12">
                     <p>Біз клиенттерге ең ыңғайлы тасымалдау тарифтарын ұсына аламыз</p>
@@ -57,7 +57,7 @@ const Services = () => {
             />
             <Row>
                 <Col className="col-12">
-                    <h4 style={{color:"#fb8500"}}>Тасымалдауды бақылау</h4>
+                    <h4 style={{color:"white"}}>Тасымалдауды бақылау</h4>
                 </Col>
                 <Col className="col-12">
                     <p>Клиенттің тапсырысын бақылауға ала отырып, барынша тез қызмет көрсетеміз</p>
@@ -80,7 +80,7 @@ const Services = () => {
             />
             <Row>
                 <Col className="col-12">
-                    <h4 style={{color:"#fb8500"}}>Қауіпсіздік бірінші орында</h4>
+                    <h4 style={{color:"white"}}>Қауіпсіздік бірінші орында</h4>
                 </Col>
                 <Col className="col-12">
                     <p>Біз үшін клиенттердің заттарының қауіпсіздігі бірінші назарда болады</p>

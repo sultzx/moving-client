@@ -27,17 +27,19 @@
 }
 
 .car-body-card {
-    border: 1px solid #fb8500;
+    border: 1px solid #D9ED92;
+    box-shadow: 1px 2px 24px #34A0A4;
     border-radius: 6px;
+    color: white;
     margin: 12px 0 12px 0;
-    transition-duration: 0.5s;
+    background: linear-gradient(50deg,  #52B69A 50%, #34A0A4);
     .card-text {
         height: 80px;
     }
 }
 
 .car-body-card:hover {
-    background: #fb8500;
+    background: linear-gradient(100deg,  #52B69A 50%, #34A0A4);
     color: white;
     .car-body-size-span {
         color: #fb8500;
@@ -53,8 +55,6 @@
     border-radius: 6px;
     transition-duration: 0.5s;
 }
-
-
 
 .car-body-price-span {
     font-weight: 800;

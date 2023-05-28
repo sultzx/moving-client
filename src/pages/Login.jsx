@@ -111,7 +111,7 @@ const Login = () => {
                                   borderColor: "red",
                                   background: "rgba(255, 0, 0, 0.122)",
                                 }
-                              : { borderColor: "#FB8500" }
+                              : { borderColor: "#52B69A" }
                           }
                           className="form-control-input"
                           {...register("login", {
@@ -135,7 +135,7 @@ const Login = () => {
                                   borderColor: "red",
                                   background: "rgba(255, 0, 0, 0.122)",
                                 }
-                              : { borderColor: "#FB8500" }
+                              : { borderColor: "#52B69A" }
                           }
                           {...register("password", {
                             required: "Құпия сөзді енгізіңіз",

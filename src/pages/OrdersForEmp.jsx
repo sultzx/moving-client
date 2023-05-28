@@ -45,7 +45,8 @@ const OrdersForEmp = () => {
                 datetime={item.datetime}
                 description={item.description}
                 category={item.category}
-                car_body={item.carBody}
+                clientPrice={item?.clientPrice}
+                driverPrice={item?.driverPrice}
                 status={item.status}
                 img={item.img}
                 owner={item.owner}

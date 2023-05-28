@@ -1,10 +1,9 @@
 $theme-colors: (
-    "primary": #FB8500,
+    "primary": #D9ED92,
     "success": blue,
     "info": tomato,
     "danger": tomato
 );
-
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -24,15 +23,17 @@ code {
 
 .btn.btn-primary {
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 1px;
   font-weight: 500;
-  color: white;
+  color: #34A0A4;
+  background: white;
   padding: 8px 30px 8px 30px;
+  border: 1px solid white
 }
 
 .btn.btn-outline-primary {
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 1px;
   font-weight: 500;
   padding: 8px 30px 8px 30px;
 }

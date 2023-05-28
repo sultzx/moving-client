@@ -1,6 +1,8 @@
-import { Col, Card,Row } from "react-bootstrap";
+import { Col, Card,Row, Button } from "react-bootstrap";
+import { Rating } from 'react-simple-star-rating'
+const CarBody = ({id, title, model, number, color, body, driver, rating, img, select}) => {
 
-const CarBody = ({title, img, text, weight, size, price, select}) => {
+  console.log(rating?.reduce((a, b) => a + b, 0) / rating?.length)
   return (
     <>
       <Col xs={12} lg={3} md={3} sm={12}>
@@ -13,22 +15,38 @@ const CarBody = ({title, img, text, weight, size, price, select}) => {
               <img className="car-body-img img-fluid cover text-center" src={img} alt="asd" />
             </div>
             <hr />
-            <Card.Title>{title}</Card.Title>
-            <Card.Subtitle>{weight} кг дейін</Card.Subtitle>
-            <Card.Text>{text}</Card.Text>
+            <Card.Title>{color} {title} {model} </Card.Title>
+            <p style={{fontSize: '30px'}}>{number}</p>
+            <p>Кузов түрі: {body}</p>
+            <hr />
             <Row>
-              <Col className="col-8">
-                <span className="car-body-size-span ">{size}&nbsp;м</span>
+              <Col md={4}>
+                <img src={`http://localhost:5000${driver?.avatar}`} className="img-fliud" width={'100px'} height={'100px'} style={{
+                  border: '1px solid ',
+                  borderRadius: '50%'
+                }} />
               </Col>
-              <Col className="col-4 d-flex column justify-content-end">
-                <span className="car-body-price-span ">{price}&nbsp;₸</span>
+              <Col md={8}>
+                <h5>{driver?.name}</h5>
+                <h6>{driver?.phone}</h6>
+                <Rating  size={30} readonly initialValue={rating?.reduce((a, b) => a + b, 0) / rating?.length} /> &nbsp; 
+                <span style={{
+                  fontSize: '18px'
+                }}>{rating?.reduce((a, b) => a + b, 0) / rating?.length}</span>
+              </Col>
+              <Col md={12} className="text-end">
+                <br />
+               <Button className="btn btn-primary" onClick={() => {window.location.assign(`http://localhost:3000/${id}/comments`)}}>Пікірлерді қарау</Button>
               </Col>
             </Row>
+           
           </Card.Body>
         </Card>
       </Col>
     </>
   );
 };
+
+
 
 export default CarBody;

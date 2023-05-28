@@ -28,8 +28,13 @@ const Header = () => {
         variant="primary"
       >
         <Container fluid>
-          <Navbar.Brand href="/">
-            <img src={logo} height="60px" alt="" />
+          <Navbar.Brand href="/" style={{
+            color: '#D9ED92',
+            fontSize: '42px',
+            fontWeight: '700',
+            textShadow: '2px 2px 2px #168AAD'
+          }}>
+            Жеткізу
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -52,6 +57,11 @@ const Header = () => {
               <Nav.Link style={{ margin: "0 10px 0 10px" }}>
                 <Link to="/contact" className="link-to-nav-items">
                   Бізбен байланыс
+                </Link>
+              </Nav.Link>
+              <Nav.Link style={{ margin: "0 10px 0 10px" }}>
+                <Link to="/admin" className="link-to-nav-items">
+                  Админ үшін
                 </Link>
               </Nav.Link>
             </Nav>
